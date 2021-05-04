@@ -57,9 +57,8 @@ const LazyBlur = props => {
         });
         setChildren(childrenCopies);
 
-    },[]);
+    }, []);
 
-    
 
     function onLoad() {
         setLoaded(true);
@@ -72,7 +71,7 @@ const LazyBlur = props => {
                     ...placeholderStyles,
                     ...placeholderTransitionStyles[state]
                 }} src={placeholder} />
-            <LazyLoad offset={ (offset) ? offset : -250 } placeholder={<ImagePlaceholder src={placeholder}/>} once>
+            <LazyLoad offset={ (offset) ? offset : 0} placeholder={<ImagePlaceholder src={placeholder} once/>}>
                 <div style={{
                     ...defaultStyle,
                     ...transitionStyles[state]
