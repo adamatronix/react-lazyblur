@@ -1,9 +1,9 @@
 // components/index.js
 
-/*
-import Button from './Button';
+import LazyBlur from './LazyBlur/LazyBlur';
+import LazyBlurImage from './LazyBlur/LazyBlurImage';
 
 export { 
-    Button
+    LazyBlur,
+    LazyBlurImage
 };
-*/
