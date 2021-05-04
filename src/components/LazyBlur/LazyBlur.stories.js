@@ -38,6 +38,16 @@ const ImageDataTwo = {
 export const Default = () => {
   return (
     <>
+    <div style={{position: 'relative', display: 'grid', gridColumnGap: '30px', gridTemplateColumns: 'repeat(12,1fr)'}}>
+      <div style={{gridColumn: '6 / span 6'}}>
+        <LazyBlur 
+          placeholder={ImageData.image.sizes['preload']} 
+          placeholderWidth={ImageData.image.sizes['preload-width']} 
+          placeholderHeight={ImageData.image.sizes['preload-height']}>
+            <img style={{width: "100%"}} src={ImageData.image.sizes['medium_large']} />
+        </LazyBlur>
+      </div>
+    </div>
     <div style={{position: 'relative', margin: '800px 0', display: 'grid', gridColumnGap: '30px', gridTemplateColumns: 'repeat(12,1fr)'}}>
       <div style={{gridColumn: '4 / span 6'}}>
         <LazyBlur 

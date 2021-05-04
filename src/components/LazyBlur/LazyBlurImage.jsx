@@ -2,10 +2,11 @@ import React from 'react';
 import LazyBlur from './LazyBlur';
 
 const LazyBlurImage = (props) => {
-  const { placeholder, className, src, alt} = props;
+  const { placeholder, offset, className, src, alt} = props;
 
   return (
     <LazyBlur
+      offset={offset}
       placeholder={placeholder.src} 
       placeholderWidth={placeholder.width} 
       placeholderHeight={placeholder.height}>
