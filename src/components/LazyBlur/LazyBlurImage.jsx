@@ -2,14 +2,14 @@ import React from 'react';
 import LazyBlur from './LazyBlur';
 
 const LazyBlurImage = (props) => {
-  const { placeholder, src} = props;
+  const { placeholder, className, src, alt} = props;
 
   return (
     <LazyBlur
       placeholder={placeholder.src} 
       placeholderWidth={placeholder.width} 
       placeholderHeight={placeholder.height}>
-        <img style={{width: "100%"}} src={src} />
+        <img style={{width: "100%"}} className={className} src={src} alt={alt}/>
     </LazyBlur>
   )
 }
