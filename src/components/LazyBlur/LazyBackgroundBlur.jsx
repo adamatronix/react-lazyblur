@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { Transition } from 'react-transition-group';
-import "./styles/lazy-blur.scss";
 
 const LazyBackgroundBlur = props => {
     const [Loaded, setLoaded] = useState(false);
-    const { placeholder, placeholderWidth, placeholderHeight, className, src, children} = props;
+    const { placeholder, className, src, children} = props;
     const duration = 200;
 
     var classesImage = classNames(className);
@@ -26,11 +25,10 @@ const LazyBackgroundBlur = props => {
     exited:  { opacity: 0 },
     };
     
-    let ratio = (placeholderHeight / placeholderWidth) * 100;
-
     let wrapperStyles = {
         position: "relative",
         width: "100%",
+        height: '100%',
         overflow: "hidden"
     };
 
