@@ -94,7 +94,8 @@ const ImagePlaceholder = props => {
         top: "0",
         position: "absolute",
         width: "100%",
-        height: "100%"
+        height: "100%",
+        pointerEvents: "none"
     };
 
     return (
