@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
+import { v4 as uuidv4 } from 'uuid';
 import { Transition } from 'react-transition-group';
 import classNames from 'classnames/bind';
 import styles from "./styles/lazy-blur.module.scss";
@@ -11,16 +12,8 @@ const LazyBlur = props => {
     const duration = 200;
 
     const defaultStyle = {
-        transition: `opacity ${duration}ms ease`,
-        opacity: 0,
+        opacity: 1
       }
-      
-    const transitionStyles = {
-    entering: { opacity: 1 },
-    entered:  { opacity: 1 },
-    exiting:  { opacity: 0 },
-    exited:  { opacity: 0 },
-    };
     
     let ratio = (placeholderHeight / placeholderWidth) * 100;
 
@@ -32,6 +25,7 @@ const LazyBlur = props => {
     };
 
     let placeholderStyles = {
+        transition: `opacity ${duration}ms ease`,
         opacity: 1,
     };
 
@@ -66,21 +60,21 @@ const LazyBlur = props => {
     
     return (
         <Transition in={Loaded} timeout={duration}>
-        {state => ( <div style={wrapperStyles}>
-            <ImagePlaceholder style={{
-                    ...placeholderStyles,
-                    ...placeholderTransitionStyles[state]
-                }} src={placeholder} />
-            <LazyLoad offset={ (offset) ? offset : 0} placeholder={<ImagePlaceholder src={placeholder} once/>}>
-                <div style={{
-                    ...defaultStyle,
-                    ...transitionStyles[state]
-                }}>
-                    { childrenEl ? childrenEl : ""}
-                </div>
-                  
-            </LazyLoad>
-        </div>)}  
+        {state => {
+          return ( <div style={wrapperStyles}>
+                      <ImagePlaceholder style={{
+                              ...placeholderStyles,
+                              ...placeholderTransitionStyles[state]
+                          }} src={placeholder} />
+                      <LazyLoad offset={ (offset) ? offset : 0} once>
+                          <div style={defaultStyle}>
+                              { childrenEl ? childrenEl : ""}
+                          </div>
+                            
+                      </LazyLoad>
+                  </div> ) 
+        } 
+        }  
         </Transition>
     )
 
@@ -95,7 +89,8 @@ const ImagePlaceholder = props => {
         position: "absolute",
         width: "100%",
         height: "100%",
-        pointerEvents: "none"
+        pointerEvents: "none",
+        zIndex: 1
     };
 
     return (
