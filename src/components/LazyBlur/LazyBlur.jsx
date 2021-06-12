@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
-import { v4 as uuidv4 } from 'uuid';
 import { Transition } from 'react-transition-group';
 import classNames from 'classnames/bind';
-import * as styles from "./styles/lazy-blur.module.scss";
 
 const LazyBlur = props => {
     const [Loaded, setLoaded] = useState(false);
@@ -42,10 +40,10 @@ const LazyBlur = props => {
             let compName = item.type.name;
             let classes, props, imageprops;
 
-            classes = classNames(item.props.className, {
-              [styles["lazy-blur"]]: true
-            });
-            props = { ...item.props, className: classes, onLoad: onLoad };
+            let newStyles = {position: 'absolute', left: '0px', top: '0px'};
+
+            classes = classNames(item.props.className);
+            props = { ...item.props, className: classes, onLoad: onLoad, style: {...item.props.style, ...newStyles} };
             
             return React.cloneElement(item, props);
         });
