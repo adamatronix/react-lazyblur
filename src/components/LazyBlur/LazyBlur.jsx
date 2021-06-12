@@ -3,7 +3,7 @@ import LazyLoad from 'react-lazyload';
 import { v4 as uuidv4 } from 'uuid';
 import { Transition } from 'react-transition-group';
 import classNames from 'classnames/bind';
-import styles from "./styles/lazy-blur.module.scss";
+import * as styles from "./styles/lazy-blur.module.scss";
 
 const LazyBlur = props => {
     const [Loaded, setLoaded] = useState(false);
