@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { Transition } from 'react-transition-group';
 
@@ -43,13 +43,16 @@ const LazyBackgroundBlur = props => {
         exited:  { opacity: 1 },
         };
 
-    const imageLoader = new Image();
-    imageLoader.src = src;
-    imageLoader.onload = onLoad;
+    useEffect(() => {
+      const imageLoader = new Image();
+      imageLoader.src = src;
+      imageLoader.onload = onLoad;
 
-    function onLoad() {
-        setLoaded(true);
-    }
+      function onLoad() {
+          setLoaded(true);
+      }
+    }, []);
+    
 
     return (
         <Transition in={Loaded} timeout={duration}>
