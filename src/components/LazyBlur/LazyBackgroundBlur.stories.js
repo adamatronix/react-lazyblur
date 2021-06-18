@@ -14,3 +14,14 @@ export const Default = () => {
     </div>
   )
 }
+
+
+export const OffScreenExample = () => {
+  return (
+    <div style={{padding: '2000px 0 0'}}>
+      <div style={{width: '100%', height: '100vh'}}>
+        <LazyBackgroundBlur src={imageOne} placeholder={imageOneBlur}></LazyBackgroundBlur>
+      </div>
+    </div>
+  )
+}
