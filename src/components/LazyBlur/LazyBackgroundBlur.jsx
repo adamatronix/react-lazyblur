@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import LazyLoad from 'react-lazyload';
 import { Transition } from 'react-transition-group';
 
 const LazyBackgroundBlur = props => {
     const [Loaded, setLoaded] = useState(false);
-    const { placeholder, className, src, children} = props;
+    const { placeholder, className, src, offset, children} = props;
     const duration = 200;
 
     var classesImage = classNames(className);
 
     const defaultStyle = {
-        background: "url(" + src + ") center center",
-        backgroundSize: "cover",
         transition: `opacity ${duration}ms ease`,
         opacity: 0,
         height: "100%",
@@ -19,8 +18,8 @@ const LazyBackgroundBlur = props => {
       }
       
     const transitionStyles = {
-    entering: { opacity: 1 },
-    entered:  { opacity: 1 },
+    entering: { opacity: 1, background: "url(" + src + ") center center", backgroundSize: "cover" },
+    entered:  { opacity: 1, background: "url(" + src + ") center center", backgroundSize: "cover" },
     exiting:  { opacity: 0 },
     exited:  { opacity: 0 },
     };
@@ -43,15 +42,10 @@ const LazyBackgroundBlur = props => {
         exited:  { opacity: 1 },
         };
 
-    useEffect(() => {
-      const imageLoader = new Image();
-      imageLoader.src = src;
-      imageLoader.onload = onLoad;
 
-      function onLoad() {
-          setLoaded(true);
-      }
-    }, []);
+    const onLoad =(e) => {
+      setLoaded(true);
+    }
     
 
     return (
@@ -65,7 +59,10 @@ const LazyBackgroundBlur = props => {
                     ...defaultStyle,
                     ...transitionStyles[state]
                 }}>
+                  <LazyLoad offset={ (offset) ? offset : 0} once>
+                    <img src={src} onLoad={onLoad} style={{position:'absolute', top: '0', left: '0', width: '100%', height: '100%', opacity: '0'}}/> 
                     { children ? children : ""}
+                  </LazyLoad>
                 </div>
         </div>)}  
         </Transition>
