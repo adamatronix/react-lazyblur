@@ -11,6 +11,8 @@ const LazyBackgroundBlur = props => {
     var classesImage = classNames(className);
 
     const defaultStyle = {
+        background: `url("${src}") center center no-repeat`,
+        backgroundSize: "cover",
         transition: `opacity ${duration}ms ease`,
         opacity: 0,
         height: "100%",
@@ -18,8 +20,8 @@ const LazyBackgroundBlur = props => {
       }
       
     const transitionStyles = {
-    entering: { opacity: 1, background: "url(" + src + ") center center", backgroundSize: "cover" },
-    entered:  { opacity: 1, background: "url(" + src + ") center center", backgroundSize: "cover" },
+    entering: { opacity: 1 },
+    entered:  { opacity: 1 },
     exiting:  { opacity: 0 },
     exited:  { opacity: 0 },
     };
