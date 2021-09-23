@@ -76,7 +76,7 @@ const ImagePlaceholder = props => {
     const { src, style } = props;
 
     let styles = {
-        background: "url(" + src + ") center center",
+        background: `url("${src}") center center no-repeat`,
         backgroundSize: "cover",
         left: "0",
         top: "0",
