@@ -40,10 +40,15 @@ const LazyBlur = props => {
         let childrenCopies = React.Children.map(children, item => {
 
             let compName = item.type.name;
-            let classes, props, imageprops;
+            let styles, props, imageprops;
 
-            classes = classNames(item.props.className, { [styles.lazyBlur]: true});
-            props = { ...item.props, className: classes, onLoad: onLoad};
+            let imgStyles = {
+              position: 'absolute',
+              left: 0,
+              top: 0
+            }
+            styles = { ...item.props.style, ...imgStyles }
+            props = { ...item.props, style: styles, onLoad: onLoad};
             
             return React.cloneElement(item, props);
         });
