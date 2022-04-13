@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
 import { Blurhash } from "react-blurhash";
 import { Transition } from 'react-transition-group';
-import classNames from 'classnames/bind';
-import * as styles from './styles/lazy-blur.module.scss';
 
 const LazyBlur = props => {
     const [Loaded, setLoaded] = useState(false);
