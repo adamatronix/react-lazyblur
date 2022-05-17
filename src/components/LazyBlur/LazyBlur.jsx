@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group';
 const LazyBlur = props => {
     const [Loaded, setLoaded] = useState(false);
     const [childrenEl, setChildren] = useState(false);
-    const { placeholder, placeholderWidth, placeholderHeight, offset, blurhash, children} = props;
+    const { placeholder, placeholderWidth, placeholderHeight, objectFit, objectPosition, offset, blurhash, children} = props;
     const duration = 200;
 
     const defaultStyle = {
@@ -23,6 +23,8 @@ const LazyBlur = props => {
     };
 
     let placeholderStyles = {
+        ...objectFit && ({objectFit}),
+        ...objectPosition && ({objectPosition}),
         transition: `opacity ${duration}ms ease`,
         opacity: 1,
     };
@@ -41,9 +43,12 @@ const LazyBlur = props => {
             let styles, props, imageprops;
 
             let imgStyles = {
+              ...objectFit && ({objectFit}),
+              ...objectPosition && ({objectPosition}),
               position: 'absolute',
               left: 0,
-              top: 0
+              top: 0,
+              height: objectFit ? '100%' : 'auto'
             }
             styles = { ...item.props.style, ...imgStyles }
             props = { ...item.props, style: styles, onLoad: onLoad};

@@ -95,6 +95,25 @@ export const Default = () => {
   );
 }
 
+export const ObjectFit = () => {
+  return (
+    <>
+    <div style={{position: 'relative', display: 'grid', gridColumnGap: '30px', gridTemplateColumns: 'repeat(12,1fr)'}}>
+      <div style={{gridColumn: '6 / span 6'}}>
+        <LazyBlur 
+          objectFit="contain"
+          objectPosition="50% 50%"
+          placeholder={ImageData.image.sizes['preload']} 
+          placeholderWidth={100} 
+          placeholderHeight={100}>
+            <img style={{width: "100%"}} src={ImageData.image.sizes['medium_large']} />
+        </LazyBlur>
+      </div>
+    </div>
+    </>
+  );
+}
+
 export const BlurHash = () => {
   return (
     <>
